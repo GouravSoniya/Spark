@@ -4,11 +4,11 @@
 
 Spark is a platform where non-technical people post and evolve software ideas, and developers discover in-demand problems worth building — without scraping Reddit, Twitter, or IdeaBrowser for inspiration.
 
-> 🚧 **Status:** Portfolio project — actively in development (v1, web only)
+>  **Status:** Portfolio project — actively in development (v1, web only)
 
 ---
 
-## 💡 The Problem
+##  The Problem
 
 - **Non-technical people** have great product ideas but no way to shape them into something actionable or find someone to build them.
 - **Developers** want to build something people actually need, but spend hours scraping forums and social media to validate demand.
@@ -18,9 +18,9 @@ Spark fixes this by treating an idea like a living document — one that a commu
 
 ---
 
-## ✨ Core Features
+##  Core Features
 
-### 🧠 Ideas
+###  Ideas
 An idea is a clean, actionable, and *ever-evolving* description of an in-demand piece of software.
 
 - Anyone can create an idea — the AI helps shape a vague thought into a clear one (see [AI Product Manager](#-ai)).
@@ -29,7 +29,7 @@ An idea is a clean, actionable, and *ever-evolving* description of an in-demand 
 - If a merge request gets **>70% upvotes within 48 hours**, it's automatically merged and the idea's **version increments**. Otherwise, it's discarded.
 - Each idea has its own **comment section** and can be **liked**.
 
-### 🤖 AI
+###  AI
 The AI plays two focused roles:
 
 | Role | Behavior |
@@ -45,7 +45,7 @@ Developers can attach real, working products to an idea:
 - Apps are ranked under an idea by like count.
 - Each app stores the **idea version it was built against** — if the link is updated, the version updates too.
 
-### 🔍 Semantic Search (Search-First Flow)
+###  Semantic Search (Search-First Flow)
 Before creating a new idea, users search first.
 
 - Semantic search surfaces existing ideas that match or resemble the query.
@@ -54,14 +54,14 @@ Before creating a new idea, users search first.
   - Contribute to the existing idea instead of duplicating it.
 - This keeps the idea pool deduplicated and high-signal.
 
-### 📰 Feed
+###  Feed
 Three primary feeds, each filterable by **tag**, **category**, or both:
 
 - **Trending** — most liked ideas in the last 48 hours
 - **Popular** — most liked ideas overall
 - **Recent** — newest ideas
 
-### 👤 Profiles
+###  Profiles
 Every user has a profile showing:
 
 - Avatar & username
@@ -71,9 +71,7 @@ Every user has a profile showing:
 
 ---
 
-## 🏗️ Tech Stack
-
-> _Fill this in as the stack is finalized._
+##  Tech Stack
 
 | Layer | Tech |
 |---|---|
@@ -87,7 +85,7 @@ Every user has a profile showing:
 
 ---
 
-## 📌 Project Info
+##  Project Info
 
 - **Type:** Portfolio Project
 - **Platform:** Web App
@@ -95,7 +93,7 @@ Every user has a profile showing:
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 This is currently a solo portfolio build, but suggestions, issues, and ideas (fittingly) are welcome — feel free to open an issue.
 
