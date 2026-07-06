@@ -87,19 +87,6 @@ Every user has a profile showing:
 
 ---
 
-## 🗺️ Roadmap
-
-- [ ] Semantic search & idea creation flow
-- [ ] AI-assisted idea generation (Product Manager flow)
-- [ ] Merge request system with 48-hour voting window
-- [ ] AI-powered idea merging/rewriting
-- [ ] App attachment + comments + likes
-- [ ] Feeds (Trending / Popular / Recent) with tag & category filters
-- [ ] User profiles & badges
-- [ ] **v2:** Dodo Payments integration for app attachment fees
-
----
-
 ## 📌 Project Info
 
 - **Type:** Portfolio Project
