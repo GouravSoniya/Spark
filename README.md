@@ -77,13 +77,13 @@ Every user has a profile showing:
 
 | Layer | Tech |
 |---|---|
-| Frontend | — |
-| Backend | — |
-| Database | — |
-| AI | — |
-| Auth | — |
+| Frontend | Next Js |
+| Backend | Supabase Edge Functions and Next js Server Actions |
+| Database | Supabase Postgres |
+| AI | Groq + Cohere for embeddings |
+| Auth | Supabase Auth |
 | Payments (post-v1) | Dodo Payments |
-| Hosting | — |
+| Hosting | Vercel |
 
 ---
 
