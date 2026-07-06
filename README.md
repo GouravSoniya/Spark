@@ -2,7 +2,7 @@ AppName - Spark
 Tagline - "Every big app start with a spark"
 Project Type - portfolio project
 Platforms - a web app
-Payments - Dodo payments on web app
+Payments - Dodo payments on web app(not included in v1)
 Description - An app where non tech people post and contribute to existing ideas so developer don't have to scrape the internet to find ideas which are in demand
 
 **Features** :
