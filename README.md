@@ -1,19 +1,119 @@
-- AppName - Spark
-- Tagline - "Every big app start with a spark"
-- Project Type - portfolio project
-- Platforms - a web app
-- ayments - Dodo payments on web app(not included in v1)
-- Description - An app where non tech people post and contribute to existing ideas so developer don't have to scrape the internet to find ideas which are in demand
+# ⚡ Spark
 
-**Features** :
+**Every big app starts with a spark.**
 
-* *An Idea* : a idea is ever evolving and clean actionable description of an in-demand software. One person create it but other people can contribute to it and evolve it overtime. If any user come across a idea they like but they think it is missing a feature then they can simply raise a merge request, the request is shown in a different section where people can either can upvote it or downvote it, if the request have more than 70 percent upvote within 48hours of it being raised than it get merged otherwise it just get deleted, the idea's version will change after each merge. Each idea will have its own comment section. Users can also like an idea.
-* *AI* : the role of AI in this app is crucial because it's job will be to create ideas and modify them when a merge request get accepted. AI have two roles in this app :
+Spark is a platform where non-technical people post and evolve software ideas, and developers discover in-demand problems worth building — without scraping Reddit, Twitter, or IdeaBrowser for inspiration.
 
-  * Idea creation : when a user first create an idea they most probably have a vague idea. The AI act as Product Manager to ask 3-4 simple question to the user during the idea creation process so it can generate a good starter idea. It give it a proper a category
-  * Modifying Idea : When a merge request get accepted the AI look at the current idea and the merge request and merge the merge request into the current idea by completely rewriting the idea to it seem seamless.
-* *App attachment* : each idea have a different section for apps attached to it, ranked by the number of likes on each app(yes people can like the app). The user need to pay a small fees to attach their app to any idea, they enter a title, a small description and a link. It could be a link to GitHub or playstore/appstore or their web app itself. Each app would have a comment section of it's own so the developer can get feedback from the users. Each app will have a version which tell the user what was the version of the idea when this app got attached to it. When they update the link the version also change
-* *Semantic Search* : when a user open the app they might already have an idea in my mind. We don't just let them create an idea, the user first search for their idea. Our semantic search will ensure that if their idea or something similar to their idea exist on our app then the user shouldn't create any idea, instead they should consider trying out the apps attached to the ideas which are similar to their search query or they contribute to those ideas if they think it lack something.
-* *Feed* : app will have a feed for trending idea - the idea with most likes in last 48 hours, popular ideas - ideas with most number of likes, most recent ideas - most recent ideas. All of these can be filtered by tags, category, or both.
-* *Profiles* : each user will have a profile with a avatar and username. They can see which badges they have under which ideas, which people replied to their comments. They can see which ideas they created and contributed.
+> 🚧 **Status:** Portfolio project — actively in development (v1, web only)
 
+---
+
+## 💡 The Problem
+
+- **Non-technical people** have great product ideas but no way to shape them into something actionable or find someone to build them.
+- **Developers** want to build something people actually need, but spend hours scraping forums and social media to validate demand.
+- **Ideas are static.** Once posted somewhere, they never improve — no one can refine, extend, or version them over time.
+
+Spark fixes this by treating an idea like a living document — one that a community can collaboratively refine, and that developers can attach real products to.
+
+---
+
+## ✨ Core Features
+
+### 🧠 Ideas
+An idea is a clean, actionable, and *ever-evolving* description of an in-demand piece of software.
+
+- Anyone can create an idea — the AI helps shape a vague thought into a clear one (see [AI Product Manager](#-ai)).
+- Anyone can propose changes via a **Merge Request**.
+- Merge requests are visible in a dedicated section where the community **upvotes/downvotes** them.
+- If a merge request gets **>70% upvotes within 48 hours**, it's automatically merged and the idea's **version increments**. Otherwise, it's discarded.
+- Each idea has its own **comment section** and can be **liked**.
+
+### 🤖 AI
+The AI plays two focused roles:
+
+| Role | Behavior |
+|---|---|
+| **Idea Creation** | Acts as a virtual Product Manager — asks 3–4 simple clarifying questions to turn a vague idea into a well-structured starter idea, and auto-assigns a category. |
+| **Idea Evolution** | When a merge request is accepted, the AI reads the current idea + the accepted request, and seamlessly rewrites the idea into its next version. |
+
+### 📎 App Attachments
+Developers can attach real, working products to an idea:
+
+- Pay a small fee to attach an app (link to GitHub, Play Store/App Store, or a live web app).
+- Each attached app has its own **title, description, link, comment section, and likes**.
+- Apps are ranked under an idea by like count.
+- Each app stores the **idea version it was built against** — if the link is updated, the version updates too.
+
+### 🔍 Semantic Search (Search-First Flow)
+Before creating a new idea, users search first.
+
+- Semantic search surfaces existing ideas that match or resemble the query.
+- If a close match exists, users are nudged to:
+  - Try an app already attached to that idea, or
+  - Contribute to the existing idea instead of duplicating it.
+- This keeps the idea pool deduplicated and high-signal.
+
+### 📰 Feed
+Three primary feeds, each filterable by **tag**, **category**, or both:
+
+- **Trending** — most liked ideas in the last 48 hours
+- **Popular** — most liked ideas overall
+- **Recent** — newest ideas
+
+### 👤 Profiles
+Every user has a profile showing:
+
+- Avatar & username
+- Badges earned across ideas
+- Replies received on their comments
+- Ideas they've created and contributed to
+
+---
+
+## 🏗️ Tech Stack
+
+> _Fill this in as the stack is finalized._
+
+| Layer | Tech |
+|---|---|
+| Frontend | — |
+| Backend | — |
+| Database | — |
+| AI | — |
+| Auth | — |
+| Payments (post-v1) | Dodo Payments |
+| Hosting | — |
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Semantic search & idea creation flow
+- [ ] AI-assisted idea generation (Product Manager flow)
+- [ ] Merge request system with 48-hour voting window
+- [ ] AI-powered idea merging/rewriting
+- [ ] App attachment + comments + likes
+- [ ] Feeds (Trending / Popular / Recent) with tag & category filters
+- [ ] User profiles & badges
+- [ ] **v2:** Dodo Payments integration for app attachment fees
+
+---
+
+## 📌 Project Info
+
+- **Type:** Portfolio Project
+- **Platform:** Web App
+- **Payments:** Dodo Payments (planned for a future version, not in v1)
+
+---
+
+## 🤝 Contributing
+
+This is currently a solo portfolio build, but suggestions, issues, and ideas (fittingly) are welcome — feel free to open an issue.
+
+---
+
+## 📄 License
+
+_Add a license (e.g. MIT) if you'd like this to be open source._
