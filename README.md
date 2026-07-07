@@ -67,8 +67,6 @@ Three primary feeds, each filterable by **tag**, **category**, or both:
 Every user has a profile showing:
 
 - Avatar & username
-- Badges earned across ideas
-- Replies received on their comments
 - Ideas they've created and contributed to
 
 ---
