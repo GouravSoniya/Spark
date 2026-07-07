@@ -25,7 +25,7 @@ Spark fixes this by treating an idea like a living document — one that a commu
 ###  Ideas
 An idea is a clean, actionable, and *ever-evolving* description of an in-demand piece of software.
 
-- Anyone can create an idea — the AI helps shape a vague thought into a clear one (see [AI Product Manager](#-ai)).
+- Anyone can create an idea — the AI helps shape a vague thought into a clear one.
 - Anyone can propose changes via a **Merge Request**.
 - Merge requests are visible in a dedicated section where the community **upvotes/downvotes** them.
 - If a merge request gets **>70% upvotes within 48 hours**, it's automatically merged and the idea's **version increments**. Otherwise, it's discarded.
