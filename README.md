@@ -13,7 +13,7 @@ npm run dev
 ```
 
 Nothing will break with empty/placeholder env vars — the app reads from
-`src/lib/mock-data.ts` until you wire real queries in.
+`src/lib/database.ts` until you wire real queries in.
 
 ## Where your backend plugs in
 
@@ -23,7 +23,7 @@ Functions own anything triggered by a timer or webhook.
 
 | File | What to do |
 |---|---|
-| `src/lib/mock-data.ts` | Replace each function body with the real Supabase query (the real query is sketched in a comment above each one). Keep the same return shape and every component keeps working unchanged. |
+| `src/lib/database.ts` | Replace each function body with the real Supabase query (the real query is sketched in a comment above each one). Keep the same return shape and every component keeps working unchanged. |
 | `src/lib/actions/ideas.ts` | Server Actions for like/unlike, comment, raise + vote on merge requests. Uncomment the Supabase calls once tables + RLS exist. |
 | `src/lib/actions/create-idea.ts` | The AI "Product Manager" flow (clarifying questions → generated idea). Swap the stubbed logic for real calls to your AI provider. |
 | `src/lib/actions/attach-app.ts` | Creates the Dodo checkout session. The **actual** app-attachment insert should happen in your `dodo-webhook` Edge Function on payment confirmation — never trust the client redirect alone. |
@@ -50,7 +50,7 @@ src/
     search/                SearchExperience
   lib/
     types.ts               shared types — keep in sync with your Postgres schema
-    mock-data.ts            data-access layer (swap for real queries)
+    database.ts            data-access layer (swap for real queries)
     actions/                Server Actions (the seam to your backend)
     supabase/               browser + server Supabase clients
 ```

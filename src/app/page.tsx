@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getFeedIdeas } from "@/lib/mock-data";
+import { getFeedIdeas } from "@/lib/database";
 import { IdeaCard } from "@/components/ideas/idea-card";
 import { FeedTabs } from "@/components/ideas/feed-tabs";
 import type { Category, FeedSort } from "@/lib/types";

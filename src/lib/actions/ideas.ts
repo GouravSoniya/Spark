@@ -187,6 +187,7 @@ export async function voteMergeRequest(
       return { error: "delete_failed" };
     }
   }
+  else {
   const { error: insertError } = await supabase
       .from("merge_votes")
       .insert({
@@ -194,11 +195,12 @@ export async function voteMergeRequest(
         user_id: user.id,
         vote_type: vote,
       });
-
-  if (insertError) {
-    console.error(insertError);
-    return { error: "insert_failed" };
+      if (insertError) {
+        console.error(insertError);
+        return { error: "insert_failed" };
+      }
   }
+
   revalidatePath(`/ideas/${ideaId}`);
   return { ok: true };
 }

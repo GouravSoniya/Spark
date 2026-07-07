@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { Search as SearchIcon } from "lucide-react";
-import { searchIdeas } from "@/lib/mock-data";
+import { searchIdeas } from "@/lib/database";
 import type { Idea } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { IdeaCard } from "@/components/ideas/idea-card";

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Plus } from "lucide-react";
-import { getIdea, getMergeRequests, getApps, getComments } from "@/lib/mock-data";
+import { getIdea, getMergeRequests, getApps, getComments } from "@/lib/database";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

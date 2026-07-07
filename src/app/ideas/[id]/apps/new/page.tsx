@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getIdea } from "@/lib/mock-data";
+import { getIdea } from "@/lib/database";
 import { AttachAppForm } from "@/components/apps/attach-app-form";
 
 export const metadata: Metadata = { title: "Attach your app" };
