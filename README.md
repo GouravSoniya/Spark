@@ -4,7 +4,6 @@
 
 Spark is a platform where non-technical people post and evolve software ideas, and developers discover in-demand problems worth building — without scraping Reddit, Twitter, or IdeaBrowser for inspiration.
 
->  **Status:** Portfolio project — actively in development (v1, web only)
 
 ---
 
