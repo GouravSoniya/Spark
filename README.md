@@ -56,7 +56,7 @@ Before creating a new idea, users search first.
 - This keeps the idea pool deduplicated and high-signal.
 
 ###  Feed
-Three primary feeds, each filterable by **tag**, **category**, or both:
+Three primary feeds, each filterable by **category**
 
 - **Trending** — most liked ideas in the last 48 hours
 - **Popular** — most liked ideas overall
