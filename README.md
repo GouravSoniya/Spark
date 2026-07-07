@@ -39,7 +39,7 @@ The AI plays two focused roles:
 | **Idea Creation** | Acts as a virtual Product Manager — asks 3–4 simple clarifying questions to turn a vague idea into a well-structured starter idea, and auto-assigns a category. |
 | **Idea Evolution** | When a merge request is accepted, the AI reads the current idea + the accepted request, and seamlessly rewrites the idea into its next version. |
 
-### 📎 App Attachments
+###  App Attachments
 Developers can attach real, working products to an idea:
 
 - Pay a small fee to attach an app (link to GitHub, Play Store/App Store, or a live web app).
