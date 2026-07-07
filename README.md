@@ -4,17 +4,9 @@
 
 Spark is a platform where non-technical people post and evolve software ideas, and developers discover in-demand problems worth building — without scraping Reddit, Twitter, or IdeaBrowser for inspiration.
 
-
-<<<<<<< HEAD
-Nothing will break with empty/placeholder env vars — the app reads from
-`src/lib/database.ts` until you wire real queries in.
-=======
 ---
->>>>>>> 2a4dc404163c15cdb8ca2d1eb4e1b4db1acc1b2e
 
-**Live Demo** - https://spark-liard-kappa.vercel.app/
-
-##  The Problem
+## 💡 The Problem
 
 - **Non-technical people** have great product ideas but no way to shape them into something actionable or find someone to build them.
 - **Developers** want to build something people actually need, but spend hours scraping forums and social media to validate demand.
@@ -24,68 +16,34 @@ Spark fixes this by treating an idea like a living document — one that a commu
 
 ---
 
-##  Core Features
+## ✨ Core Features
 
-###  Ideas
+### 🧠 Ideas
 An idea is a clean, actionable, and *ever-evolving* description of an in-demand piece of software.
 
-- Anyone can create an idea — the AI helps shape a vague thought into a clear one.
+- Anyone can create an idea — the AI helps shape a vague thought into a clear one (see [AI Product Manager](#-ai)).
 - Anyone can propose changes via a **Merge Request**.
 - Merge requests are visible in a dedicated section where the community **upvotes/downvotes** them.
 - If a merge request gets **>70% upvotes within 48 hours**, it's automatically merged and the idea's **version increments**. Otherwise, it's discarded.
 - Each idea has its own **comment section** and can be **liked**.
 
-###  AI
+### 🤖 AI
 The AI plays two focused roles:
 
 | Role | Behavior |
 |---|---|
-<<<<<<< HEAD
-| `src/lib/database.ts` | Replace each function body with the real Supabase query (the real query is sketched in a comment above each one). Keep the same return shape and every component keeps working unchanged. |
-| `src/lib/actions/ideas.ts` | Server Actions for like/unlike, comment, raise + vote on merge requests. Uncomment the Supabase calls once tables + RLS exist. |
-| `src/lib/actions/create-idea.ts` | The AI "Product Manager" flow (clarifying questions → generated idea). Swap the stubbed logic for real calls to your AI provider. |
-| `src/lib/actions/attach-app.ts` | Creates the Dodo checkout session. The **actual** app-attachment insert should happen in your `dodo-webhook` Edge Function on payment confirmation — never trust the client redirect alone. |
-| `src/lib/supabase/client.ts` / `server.ts` | Already wired to `@supabase/ssr` correctly for the App Router (browser client vs. per-request server client). No changes needed, just add env vars. |
-| `src/proxy.ts` | Refreshes the auth session cookie on every request. No changes needed. |
-=======
 | **Idea Creation** | Acts as a virtual Product Manager — asks 3–4 simple clarifying questions to turn a vague idea into a well-structured starter idea, and auto-assigns a category. |
 | **Idea Evolution** | When a merge request is accepted, the AI reads the current idea + the accepted request, and seamlessly rewrites the idea into its next version. |
->>>>>>> 2a4dc404163c15cdb8ca2d1eb4e1b4db1acc1b2e
 
-###  App Attachments
+### 📎 App Attachments
 Developers can attach real, working products to an idea:
 
-<<<<<<< HEAD
-```
-src/
-  app/                    routes (App Router)
-    page.tsx              home feed (trending/popular/recent + filters)
-    search/                semantic search entry point
-    ideas/new/              AI-guided idea creation wizard
-    ideas/[id]/              idea detail: description, merge requests, apps, comments
-    ideas/[id]/apps/new/      attach-app + payment flow
-    profile/[username]/      profile, badges, authored ideas
-    login/, signup/          auth forms (submit handlers are stubbed)
-  components/
-    ui/                    Button, Input, Badge, Avatar — design primitives
-    layout/                Navbar, Footer
-    ideas/                 IdeaCard, EmberMark, MergeRequestCard, CommentSection, etc.
-    apps/                  AppCard, AttachAppForm
-    search/                SearchExperience
-  lib/
-    types.ts               shared types — keep in sync with your Postgres schema
-    database.ts            data-access layer (swap for real queries)
-    actions/                Server Actions (the seam to your backend)
-    supabase/               browser + server Supabase clients
-```
-=======
 - Pay a small fee to attach an app (link to GitHub, Play Store/App Store, or a live web app).
 - Each attached app has its own **title, description, link, comment section, and likes**.
 - Apps are ranked under an idea by like count.
 - Each app stores the **idea version it was built against** — if the link is updated, the version updates too.
->>>>>>> 2a4dc404163c15cdb8ca2d1eb4e1b4db1acc1b2e
 
-###  Semantic Search (Search-First Flow)
+### 🔍 Semantic Search (Search-First Flow)
 Before creating a new idea, users search first.
 
 - Semantic search surfaces existing ideas that match or resemble the query.
@@ -94,14 +52,14 @@ Before creating a new idea, users search first.
   - Contribute to the existing idea instead of duplicating it.
 - This keeps the idea pool deduplicated and high-signal.
 
-###  Feed
-Three primary feeds, each filterable by **category**
+### 📰 Feed
+Three primary feeds, each filterable by **tag**, **category**, or both:
 
 - **Trending** — most liked ideas in the last 48 hours
 - **Popular** — most liked ideas overall
 - **Recent** — newest ideas
 
-###  Profiles
+### 👤 Profiles
 Every user has a profile showing:
 
 - Avatar & username
@@ -109,21 +67,36 @@ Every user has a profile showing:
 
 ---
 
-##  Tech Stack
+## 🏗️ Tech Stack
+
+> _Fill this in as the stack is finalized._
 
 | Layer | Tech |
 |---|---|
-| Frontend | Next Js |
-| Backend | Supabase Edge Functions and Next js Server Actions |
+| Frontend | Next js |
+| Backend | Next js Server Actions and Supabse Edge Functions |
 | Database | Supabase Postgres |
-| AI | Groq + Cohere for embeddings |
+| AI | Groq and Cohere for embeddings |
 | Auth | Supabase Auth |
 | Payments (post-v1) | Dodo Payments |
 | Hosting | Vercel |
 
 ---
 
-##  Project Info
+## 🗺️ Roadmap
+
+- [ ] Semantic search & idea creation flow
+- [ ] AI-assisted idea generation (Product Manager flow)
+- [ ] Merge request system with 48-hour voting window
+- [ ] AI-powered idea merging/rewriting
+- [ ] App attachment + comments + likes
+- [ ] Feeds (Trending / Popular / Recent) with tag & category filters
+- [ ] User profiles & badges
+- [ ] **v2:** Dodo Payments integration for app attachment fees
+
+---
+
+## 📌 Project Info
 
 - **Type:** Portfolio Project
 - **Platform:** Web App
@@ -131,7 +104,7 @@ Every user has a profile showing:
 
 ---
 
-##  Contributing
+## 🤝 Contributing
 
 This is currently a solo portfolio build, but suggestions, issues, and ideas (fittingly) are welcome — feel free to open an issue.
 
