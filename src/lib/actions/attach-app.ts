@@ -79,5 +79,5 @@ export async function createAttachCheckout(input: AttachAppInput) {
     },
   });
 
-  return { url: session.checkout_url };
+  return { url: session.checkout_url ?? "" };
 }
