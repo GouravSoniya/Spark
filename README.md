@@ -78,21 +78,10 @@ Every user has a profile showing:
 | Database | Supabase Postgres |
 | AI | Groq and Cohere for embeddings |
 | Auth | Supabase Auth |
-| Payments (post-v1) | Dodo Payments |
+| Payments | Dodo Payments |
 | Hosting | Vercel |
 
 ---
-
-## 🗺️ Roadmap
-
-- [ ] Semantic search & idea creation flow
-- [ ] AI-assisted idea generation (Product Manager flow)
-- [ ] Merge request system with 48-hour voting window
-- [ ] AI-powered idea merging/rewriting
-- [ ] App attachment + comments + likes
-- [ ] Feeds (Trending / Popular / Recent) with tag & category filters
-- [ ] User profiles & badges
-- [ ] **v2:** Dodo Payments integration for app attachment fees
 
 ---
 
@@ -100,7 +89,7 @@ Every user has a profile showing:
 
 - **Type:** Portfolio Project
 - **Platform:** Web App
-- **Payments:** Dodo Payments (planned for a future version, not in v1)
+- **Payments:** Dodo Payments
 
 ---
 
