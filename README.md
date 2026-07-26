@@ -69,8 +69,6 @@ Every user has a profile showing:
 
 ## 🏗️ Tech Stack
 
-> _Fill this in as the stack is finalized._
-
 | Layer | Tech |
 |---|---|
 | Frontend | Next js |
