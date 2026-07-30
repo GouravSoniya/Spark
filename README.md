@@ -6,6 +6,8 @@ Spark is a platform where non-technical people post and evolve software ideas, a
 
 ---
 
+Live Demo : https://spark-liard-kappa.vercel.app
+
 ## 💡 The Problem
 
 - **Non-technical people** have great product ideas but no way to shape them into something actionable or find someone to build them.
