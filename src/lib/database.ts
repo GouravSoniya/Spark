@@ -299,90 +299,96 @@ const authors: Record<string, Idea["author"]> = {
 
 export async function getFeedIdeas(filters: FeedFilters): Promise<Idea[]> {
   const supabase = await createClient();
-  
-  // 1. Get the current user
-  
-  const { data: { user }, error } = await supabase.auth.getUser();
+
+  const DESCRIPTION_PREVIEW_LENGTH = 150;
+
+  // ----------------------------------------------------------------
+  // Kick off user + ideas fetch in parallel (they don't depend on each other)
+  // ----------------------------------------------------------------
+  const userPromise = supabase.auth.getUser();
+
+  const ideasPromise =
+    filters.sort === "trending"
+      ? supabase.rpc("get_trending_ideas", {
+          page_number: 1,
+          page_size: 10,
+        })
+      : (() => {
+          let query = supabase
+            .from("ideas")
+            .select(
+              `id, title, description, category, likeCount, createdAt,
+               author:profile ( username, avatar_url )`
+            );
+
+          if (filters.category) {
+            query = query.eq("category", filters.category);
+          }
+
+          if (filters.sort === "popular") {
+            query = query.order("likeCount", { ascending: false });
+          } else if (filters.sort === "recent") {
+            query = query.order("createdAt", { ascending: false });
+          }
+
+          return query;
+        })();
+
+  const [{ data: { user } }, { data: rawData, error: ideasError }] =
+    await Promise.all([userPromise, ideasPromise]);
+
+  if (ideasError) throw ideasError;
+
+  let rawIdeas: any[] = rawData || [];
   const currentUserId = user?.id;
 
-  let rawIdeas: any[] = [];
-
-  // ----------------------------------------------------------------
-  // FETCH DATA PATH A: Trending (RPC)
-  // ----------------------------------------------------------------
-  if (filters.sort === "trending") {
-    const { data, error } = await supabase.rpc('get_trending_ideas', { 
-      page_number: 1, 
-      page_size: 10 
-    });
-    if (error) throw error.message;
-    rawIdeas = data || [];
-
-    // Filter by category in JS if requested
-    if (filters.category && rawIdeas.length > 0) {
-      rawIdeas = rawIdeas.filter((item: any) => item.category === filters.category);
-    }
-  } 
-  // ----------------------------------------------------------------
-  // FETCH DATA PATH B: Standard (Popular / Recent)
-  // ----------------------------------------------------------------
-  else {
-    let query = supabase
-      .from("ideas")
-      .select(`
-        *,
-        author:profile (
-          username,
-          avatar_url
-        )
-      `);
-
-    if (filters.category) {
-      query = query.eq("category", filters.category);
-    }
-    
-    if (filters.sort === "popular") {
-      query = query.order("likeCount", { ascending: false });
-    } else if (filters.sort === "recent") {
-      query = query.order("createdAt", { ascending: false });
-    }
-
-    const { data, error } = await query;
-    if (error) throw error;
-    rawIdeas = data || [];
+  // Trending path still needs JS-side category filtering since the RPC
+  // doesn't support it — fine at this scale since page_size (10) already
+  // covers all ideas.
+  if (filters.sort === "trending" && filters.category) {
+    rawIdeas = rawIdeas.filter((item: any) => item.category === filters.category);
   }
 
-  // ----------------------------------------------------------------
-  // CORE FIX: In-Memory "likedByViewer" Matching
-  // ----------------------------------------------------------------
-  
-  // If no ideas returned, or no user logged in, wrap up early
   if (rawIdeas.length === 0) return [];
+
+  // ----------------------------------------------------------------
+  // Truncate description for card preview
+  // ----------------------------------------------------------------
+  const withPreview = rawIdeas.map((idea) => ({
+    ...idea,
+    description:
+      idea.description?.length > DESCRIPTION_PREVIEW_LENGTH
+        ? idea.description.slice(0, DESCRIPTION_PREVIEW_LENGTH).trim() + "…"
+        : idea.description,
+  }));
+
+  // ----------------------------------------------------------------
+  // In-memory "likedByViewer" matching
+  // ----------------------------------------------------------------
   if (!currentUserId) {
-    return rawIdeas.map(idea => ({ ...idea, likedByViewer: false })) as Idea[];
+    return withPreview.map((idea) => ({
+      ...idea,
+      likedByViewer: false,
+    })) as Idea[];
   }
 
-  // Extract all idea IDs from the fetched batch
-  const ideaIds = rawIdeas.map(idea => idea.id);
+  const ideaIds = withPreview.map((idea) => idea.id);
 
-  // Fetch only the likes that match THIS user AND these specific ideas
   const { data: userLikes, error: likesError } = await supabase
-    .from('idea_likes')
-    .select('idea_id')
-    .eq('user_id', currentUserId)
-    .in('idea_id', ideaIds);
+    .from("idea_likes")
+    .select("idea_id")
+    .eq("user_id", currentUserId)
+    .in("idea_id", ideaIds);
 
   if (likesError) {
     console.error("Error fetching user likes:", likesError);
   }
 
-  // Map likes to a Set for ultra-fast lookup: Set structure -> O(1)
-  const likedIdeaIdsSet = new Set(userLikes?.map(like => like.idea_id));
+  const likedIdeaIdsSet = new Set(userLikes?.map((like) => like.idea_id));
 
-  // Merge the boolean back into the original array
-  return rawIdeas.map((idea) => ({
+  return withPreview.map((idea) => ({
     ...idea,
-    likedByViewer: likedIdeaIdsSet.has(idea.id)
+    likedByViewer: likedIdeaIdsSet.has(idea.id),
   })) as Idea[];
 }
 

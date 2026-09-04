@@ -61,7 +61,7 @@ export default async function HomePage({
         <FeedTabs activeSort={sort} activeCategory={category} />
       </div>
 
-      <Suspense fallback={<FeedSkeleton />}>
+      <Suspense key={`${sort}-${category ?? "all"}`} fallback={<FeedSkeleton />}>
         <Feed sort={sort} category={category} />
       </Suspense>
     </div>

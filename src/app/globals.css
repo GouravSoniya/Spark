@@ -78,12 +78,6 @@
   [role="button"]:active {
     transition-duration: 0ms !important;
   }
-
-  /* Catches any element with hover classes and triggers them on press */
-  [class*="hover\:"]:active {
-    filter: brightness(1.15);
-    opacity: 0.85;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -91,5 +85,23 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  @keyframes loading-slide {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(200%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-loading-slide {
+    animation: loading-slide 1.1s ease-in-out infinite;
   }
 }

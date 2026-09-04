@@ -3,6 +3,7 @@ import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import "./globals.css";
+import { NavigationProgressProvider } from "@/lib/navigation-progress";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -46,7 +47,9 @@ export default function RootLayout({
     >
       <body className="antialiased min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <NavigationProgressProvider>
+          <main className="flex-1">{children}</main>
+        </NavigationProgressProvider>
         <Footer />
       </body>
     </html>

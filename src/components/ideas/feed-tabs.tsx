@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import type { Category, FeedSort } from "@/lib/types";
 import { categoryLabel, cn } from "@/lib/utils";
 
@@ -20,7 +21,7 @@ const CATEGORIES: Category[] = [
   "Social",
   "Creative",
   "Commerce",
-  "Other"
+  "Other",
 ];
 
 export function FeedTabs({
@@ -33,6 +34,12 @@ export function FeedTabs({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const tabRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [indicator, setIndicator] = useState<{ left: number; width: number }>({
+    left: 0,
+    width: 0,
+  });
+
   function buildHref(overrides: Record<string, string | undefined>) {
     const params = new URLSearchParams(searchParams.toString());
     for (const [key, value] of Object.entries(overrides)) {
@@ -43,23 +50,44 @@ export function FeedTabs({
     return qs ? `${pathname}?${qs}` : pathname;
   }
 
+  useEffect(() => {
+    const activeEl = tabRefs.current[activeSort];
+    if (activeEl) {
+      setIndicator({
+        left: activeEl.offsetLeft,
+        width: activeEl.offsetWidth,
+      });
+    }
+  }, [activeSort]);
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-1 border-b border-hairline">
+      <div className="relative flex items-center gap-1 border-b border-hairline">
         {SORTS.map((sort) => (
           <Link
             key={sort.value}
+            ref={(el) => {
+              tabRefs.current[sort.value] = el;
+            }}
             href={buildHref({ sort: sort.value })}
             className={cn(
-              "px-3.5 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors",
+              "px-3.5 py-2.5 text-sm font-medium transition-colors",
               activeSort === sort.value
-                ? "border-ember text-paper"
-                : "border-transparent text-muted hover:text-paper"
+                ? "text-paper"
+                : "text-muted hover:text-paper"
             )}
           >
             {sort.label}
           </Link>
         ))}
+        {/* Animated underline */}
+        <span
+          className="absolute bottom-0 h-0.5 bg-ember transition-all duration-300 ease-out"
+          style={{
+            left: indicator.left,
+            width: indicator.width,
+          }}
+        />
       </div>
 
       <div className="flex flex-wrap gap-2">
