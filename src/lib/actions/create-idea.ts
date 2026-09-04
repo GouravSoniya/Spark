@@ -41,7 +41,7 @@ export interface GeneratedIdea {
 export async function getClarifyingQuestions(_vagueDescription: string): Promise<string[]> {
   try {
     const response = await groq.chat.completions.create({
-      model: "qwen/qwen3.6-27b",
+      model: "qwen/qwen3.8-27b",
       response_format: { type: "json_object" },
       temperature: 0.7,
       messages: [
@@ -87,7 +87,7 @@ export async function generateStarterIdea(input: StarterAnswers): Promise<Genera
       .join("\n\n");
 
     const response = await groq.chat.completions.create({
-      model: "openai/gpt-oss-120b",
+      model: "qwen/qwen3.8-27b",
       response_format: { type: "json_object" },
       temperature: 0.6, // Lower temperature for more structured, focused PM alignment
       messages: [
