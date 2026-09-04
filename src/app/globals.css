@@ -40,6 +40,16 @@
     background-attachment: fixed;
   }
 
+  /* 1. Eliminate mobile tap highlight flash and remove input/tap delays */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"],
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
   ::selection {
     background: var(--color-ember);
     color: var(--color-ink);
@@ -58,6 +68,21 @@
   }
   .font-mono {
     font-family: var(--font-mono);
+  }
+}
+
+/* 2. Map Tailwind hover state modifiers to instant active press states on touch screens */
+@media (hover: none) and (pointer: coarse) {
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transition-duration: 0ms !important;
+  }
+
+  /* Catches any element with hover classes and triggers them on press */
+  [class*="hover\:"]:active {
+    filter: brightness(1.15);
+    opacity: 0.85;
   }
 }
 
